@@ -5,5 +5,7 @@
     - name: download splunk installer
       get_url:
         url: https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.1&product=splunk&filename=splunk-7.1.1-8f0ead9ec3db-Linux-x86_64.tgz&wget=true
-        dest: /opt/
+        dest: /opt/splunk_installer.tgz
+    - name: Untar splunk installer
+      command: tar -xvzf /opt/splunk_installer.tgz
       
