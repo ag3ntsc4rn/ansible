@@ -10,10 +10,10 @@
       command: tar -xvzf /opt/splunk_installer.tgz -C /opt/
     - name: Set $SPLUNK_HOME
       copy:
-        src: ../files/.bashrc
-        dest: /home/splunk/.bashrc
-    - name: Source .bashrc
-      shell: . /home/splunk/.bashrc
+        src: ../files/.bash_profile
+        dest: /home/splunk/.bash_profile
+    - name: Source .bash_profile
+      shell: . /home/splunk/.bash_profile
     - name: Copy user-seed.conf file to set up admin user
       copy:
         src: ../files/user-seed.conf
