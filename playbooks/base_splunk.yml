@@ -17,5 +17,5 @@
     - name: Copy user-seed.conf file to set up admin user
       copy:
         src: ../files/user-seed.conf
-        dest: $SPLUNK_HOME/etc/system/local/user-seed.conf
+        dest: /opt/splunk/etc/system/local/user-seed.conf
       
