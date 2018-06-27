@@ -22,6 +22,8 @@
       copy:
         src: ../files/splunk-launch.conf
         dest: /opt/splunk/etc/splunk-launch.conf
+    - name: Chown to splunk
+      command: chown -R splunk:splunk /opt/splunk
     - name: Start splunk
       command: /opt/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
       
