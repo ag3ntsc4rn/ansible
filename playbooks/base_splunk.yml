@@ -9,7 +9,11 @@
     - name: Untar splunk installer
       command: tar -xvzf /opt/splunk_installer.tgz -C /opt/
     - name: Set $SPLUNK_HOME
-      command: export SPLUNK_HOME=/opt/splunk
+      copy:
+        src: ../files/.bashrc
+        dest: /home/splunk/.bashrc
+    - name: Source .bashrc
+      command: source /home/splunk/.bashrc
     - name: Copy user-seed.conf file to set up admin user
       copy:
         src: ../files/user-seed.conf
