@@ -18,6 +18,10 @@
       copy:
         src: ../files/user-seed.conf
         dest: /opt/splunk/etc/system/local/user-seed.conf
+    - name: Copy splunk-launch.conf file to bypass filesystem check
+      copy:
+        src: ../files/splunk-launch.conf
+        dest: /opt/splunk/etc/splunk-launch.conf
     - name: Start splunk
       command: /opt/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
       
