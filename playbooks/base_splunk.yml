@@ -18,4 +18,6 @@
       copy:
         src: ../files/user-seed.conf
         dest: /opt/splunk/etc/system/local/user-seed.conf
+    - name: Start splunk
+      command: /opt/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
       
