@@ -1,2 +1,2 @@
 #!/bin/sh
-export SPLUNK_HOME = /opt/splunk
+export SPLUNK_HOME=/opt/splunk
