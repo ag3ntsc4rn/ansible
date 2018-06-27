@@ -7,5 +7,9 @@
         url: https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.1&product=splunk&filename=splunk-7.1.1-8f0ead9ec3db-Linux-x86_64.tgz&wget=true
         dest: /opt/splunk_installer.tgz
     - name: Untar splunk installer
-      command: tar -xvzf /opt/splunk_installer.tgz -C /opt/
+      command: tar -xvzf /opt/splunk_installer.tgz -C /opt/ && export $SPLUNK_HOME=/opt/splunk
+    - name: Copy user-seed.conf file to set up admin user
+      copy:
+        src: ../files/user-seed.conf
+        dest: $SPLUNK_HOME/etc/system/local/user-seed.conf
       
