@@ -13,7 +13,7 @@
         src: ../files/.bashrc
         dest: /home/splunk/.bashrc
     - name: Source .bashrc
-      shell: source /home/splunk/.bashrc
+      shell: . /home/splunk/.bashrc
     - name: Copy user-seed.conf file to set up admin user
       copy:
         src: ../files/user-seed.conf
