@@ -5,40 +5,54 @@
     - name: Check if splunk.installed file is present
       stat: path=/opt/splunk/splunk.installed
       register: is_installed
+    
     - name: download splunk installer
       get_url:
         url: https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&platform=linux&version=7.1.1&product=splunk&filename=splunk-7.1.1-8f0ead9ec3db-Linux-x86_64.tgz&wget=true
         dest: /opt/splunk_installer.tgz
       when: not is_installed.stat.exists
+    
     - name: Untar splunk installer
       command: tar -xvzf /opt/splunk_installer.tgz -C /opt/
       when: not is_installed.stat.exists
+    
     - name: Set $SPLUNK_HOME
       copy:
         src: ../files/.bash_profile
         dest: /home/splunk/.bash_profile
       when: not is_installed.stat.exists
+    
     - name: Source .bash_profile
       shell: . /home/splunk/.bash_profile
       when: not is_installed.stat.exists
+    
     - name: Copy user-seed.conf file to set up admin user
       copy:
         src: ../files/user-seed.conf
         dest: /opt/splunk/etc/system/local/user-seed.conf
       when: not is_installed.stat.exists
+    
     - name: Copy splunk-launch.conf file to bypass filesystem check
       copy:
         src: ../files/splunk-launch.conf
         dest: /opt/splunk/etc/splunk-launch.conf
       when: not is_installed.stat.exists
+    
     - name: Chown to splunk
       command: chown -R splunk:splunk /opt/splunk
+    
     - name: Start splunk
       command: /opt/splunk/bin/splunk start --answer-yes --no-prompt --accept-license
       become_user: splunk
       when: not is_installed.stat.exists
+    
     - name: Test group_vars
       command: touch /opt/splunk/{{env}}
+      become_user: splunk
+      when: not is_installed.stat.exists
+
+    - name: Create splunk.installed file
+      command: touch /opt/splunk/splunk.installed
       become_user: splunk
       when: not is_installed.stat.exists
       
