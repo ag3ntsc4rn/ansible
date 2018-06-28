@@ -1,0 +1,3 @@
+# group_vars/splunk
+---
+env: production

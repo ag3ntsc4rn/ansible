@@ -1,0 +1,5 @@
+[control]
+splunkcontrol ansible_connection=local
+
+[splunk]
+splunk
